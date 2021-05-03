@@ -1,16 +1,34 @@
 const fs = require('fs').promises;
-const neatCsv = require('neat-csv');
+const csv = require('csvtojson');
 const AP = require('./AP')
 
-async function readCSV() {
-    const records = await fs.readFile('./tickets.csv', async(err, data) =>{
-        if(err){console.log(err); return};
-        const parsed = await neatCsv(data);
-        return parsed;
-    })
-    console.log(records);
-    return records;
+let csvFilePath = './file.csv'
+
+async function readCSV(filePath = './file.csv') {
+    const ticketData = await csv().fromFile(filePath);
+    return ticketData;
+
 }
 
+async function genAPs(filePath = './file.csv'){
+    let APs = [];
+    let ticketData = await readCSV(filePath);
+    let apData = []
+    let apNames = new Set();
+    for(let ticket of ticketData){
+        if(ticket.Subject){
+            console.log(ticket.Subject)
+            let apName = ticket.Subject.split(" ")
+            apNames.add(apName[0])
+        }; 
+    };
+    for(let name of apNames){
+        tickets = ticketData.filter((ticket) => {
+            return ticket.Subject.indexOf(name) !== -1
+        });
+        APs.push(new AP(name, tickets))
+    };
+    return APs
+}
 
-module.exports = readCSV
+module.exports = {readCSV , genAPs}
