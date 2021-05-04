@@ -1,6 +1,8 @@
-class AP {
+const csv = require('csvtojson');
+
+
+class Tower {
     constructor (name, problems){
-        console.log("New AP!")
         this.name = name;
         this.problems = problems;
         this.numProblems = problems.length
@@ -27,6 +29,38 @@ class AP {
         });
         this.numUserSpecificProblems = this.userSpecificProblems.length;
     }
+
+    static async readCSV(filePath = '../file.csv') {
+        const ticketData = await csv().fromFile(filePath);
+        return ticketData;
+    }
+
+    static getTowerName(subject){
+        subject = subject.toLowerCase();
+        const apName = subject.split(" ")[0];
+        const towerName = apName.split(".")[1]
+        return towerName
+    }
+
+    static async genTowers(filePath = './file.csv'){
+        let towers = [];
+        let ticketData = await readCSV(filePath);
+        let towerNames = new Set();
+        for(let ticket of ticketData){
+            if(ticket.Subject){
+                const name = getTowerName(ticket.Subject);
+                towerNames.add(name)
+            }; 
+        };
+        for(let name of towerNames){
+            tickets = ticketData.filter((ticket) => {
+                return getTowerName(ticket.Subject) === name
+            });
+            towers.push(new Tower(name, tickets))
+        };
+        towers.sort((a, b) => (a.numProblems < b.numProblems) ? 1 : -1)
+        return towers
+    }
 }
 
-module.exports = AP
+module.exports = Tower
