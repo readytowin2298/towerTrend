@@ -1,15 +1,28 @@
 {
-  "name": "zyxel-project",
+  "name": "towertrend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parses CSV to display graphs relating to tower issues",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "csvtojson": "^2.0.10",
-    "pg": "^8.6.0"
-  }
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "plotly": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readytowin2298/towerTrend.git"
+  },
+  "keywords": [],
+  "author": "David Ames",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/readytowin2298/towerTrend/issues"
+  },
+  "homepage": "https://github.com/readytowin2298/towerTrend#readme"
 }

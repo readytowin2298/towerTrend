@@ -44,17 +44,17 @@ class Tower {
 
     static async genTowers(filePath = './file.csv'){
         let towers = [];
-        let ticketData = await readCSV(filePath);
+        let ticketData = await this.readCSV(filePath);
         let towerNames = new Set();
         for(let ticket of ticketData){
             if(ticket.Subject){
-                const name = getTowerName(ticket.Subject);
+                const name = this.getTowerName(ticket.Subject);
                 towerNames.add(name)
             }; 
         };
         for(let name of towerNames){
-            tickets = ticketData.filter((ticket) => {
-                return getTowerName(ticket.Subject) === name
+            let tickets = ticketData.filter((ticket) => {
+                return this.getTowerName(ticket.Subject) === name
             });
             towers.push(new Tower(name, tickets))
         };
