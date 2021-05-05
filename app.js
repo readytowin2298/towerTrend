@@ -5,8 +5,8 @@ const ExpressError = require("./helpers/expressError");
 
 app.set('view engine', 'pug')
 
-// const graphRoutes = require('./routes/graphRoutes.js');
-// app.use('/graph', graphRoutes);
+const towerRoutes = require('./routes/towerRoutes.js');
+app.use('/graph', towerRoutes);
 
 /** 404 handler */
 
