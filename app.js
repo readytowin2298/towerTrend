@@ -4,7 +4,7 @@ const app = express();
 const ExpressError = require("./helpers/expressError");
 
 
-const graphRoutes = require('./routes/graph.js');
+const graphRoutes = require('./routes/graphRoutes.js');
 app.use('/graph', graphRoutes);
 
 /** 404 handler */
