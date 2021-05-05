@@ -56,6 +56,7 @@ class Tower {
             let tickets = ticketData.filter((ticket) => {
                 return this.getTowerName(ticket.Subject) === name
             });
+            name  = name.charAt(0).toUpperCase() + name.slice(1);
             towers.push(new Tower(name, tickets))
         };
         towers.sort((a, b) => (a.numProblems < b.numProblems) ? 1 : -1)

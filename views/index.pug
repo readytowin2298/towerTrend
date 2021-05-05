@@ -1,0 +1,19 @@
+html
+  head
+    title= 'Tower Trend Test'
+    style 
+      include ./styles/style.css
+  body
+    img(
+      width= "20%"
+      src= "https://3407kb3fjbst104k28446jvo-wpengine.netdna-ssl.com/wp-content/uploads/2019/04/NXL_white.svg"
+    )
+    h1(class='title')= "Tower Trend Tracker"
+    ol 
+      each tower in towers 
+        li(class='bold')= tower.name 
+        ul 
+          li= "Total Open Tickets: " + tower.numProblems 
+          li= "Total No Connection Tickets: " + tower.numNoConnectProblems
+          li= "Total Intermittent Connection Tickets: " + tower.numIntermittent
+          li= "Total Slow Speed Tickets: " + tower.numSlowSpeedIssues

@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+.title {
+    font-weight: bolder;
+    text-decoration: underline;
+    font-style: italic;
+}
